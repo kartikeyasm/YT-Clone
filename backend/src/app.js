@@ -17,9 +17,15 @@ app.use(cors({
 app.use(express.json({limit: "16kb"}));  //To handle JSON data from forms
 app.use(express.urlencoded({extended: true, limit: "16kb"})); //To handle URL data
 app.use(express.static("public"))   //It is made to handle if there are any temp files are required and those files can be placed in ./public/temp
-
-
 //Cookie Setup
 app.use(cookieParser())
+
+
+//Routes
+import userRouter from './routes/user.routes.js';
+
+
+//Routes Decleration
+app.use("/api/v1/user", userRouter)   //http://localhost:8000/api/v1/user/register
 
 export {app};

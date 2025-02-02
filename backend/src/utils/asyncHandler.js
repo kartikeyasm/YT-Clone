@@ -1,6 +1,6 @@
 //A function is passed as a parameter inside asyncHandler
 // therefore asyncHandler is a super function
-const asyncHandler = (fn) = async (req, res, next)=>{
+const asyncHandler = (fn) => async (req, res, next)=>{
     try{
         await fn(req,res,next);
     }catch(error){
@@ -15,7 +15,7 @@ export {asyncHandler}
 
 /*  //Another way of writing code
 const asyncHandler = (requestHandler) => {
-    (req, res, next) => {
+    return (req, res, next) => {
         Promise.resolve(requestHandler(req, res, next))
         .catch((err) => next(err))
     }
