@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema(
         },
         refreshToken: {
             type: String,   //Use JWT (jsonwebtoken) to generate tokens
-            required: true
+            default: ""
         },
         watchHistory: [
             {
@@ -65,11 +65,10 @@ userSchema.methods.isPasswordCorrect = async function (password){
 
 userSchema.methods.generateAccessToken = function(){
     return jwt.sign({
-        _id: thid._id,
+        _id: this._id,
         email: this.email,
         userName: this.userName,
         fullName: this.fullName,
-
         },
         process.env.ACCESS_TOKEN_SECRET,
         {
